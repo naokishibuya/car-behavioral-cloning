@@ -7,8 +7,13 @@
 
 ## Project Description
 
-In this project, the neural network is given a task of cloning the car driving behavior.  As such, I conducted a supervised learning on the car steering angle given road images in front of a car.  There are three images from the center, the left and the right angles associated with the car.  It is a supervised regression problem.  As image processing is involved, the convolutional neural network was chosen, especially [the NVIDIA model](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) that was proven to work in the same kind of problem domain.
+In this project, I use a neural network to clone car driving behavior.  It is a supervised regression problem between the car steering angles and the road images in front of a car.  
 
+Those images were taken from three different camera angles (from the center, the left and the right of the car).  
+
+The network is based on [The NVIDIA model](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/), which has been proven to work in this problem domain.
+
+As image processing is involved, the model is using convolutional layers for automated feature engineering.  
 
 ###Files included
 
@@ -59,18 +64,11 @@ python drive.py model.json
 
 ## Model Architecture Design
 
-###What kind of reference have you been studying for?
+The design of the network is based on [the NVIDIA model](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/), which has been used by NVIDIA for the end-to-end self driving test.  As such, it is well suited for the project.  
 
-I’ve studied [the NVIDIA model](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) for the end-to-end self driving.
+It is a deep convolution network which works well with supervised image classification / regression problems.  As the NVIDIA model is well documented, I was able to focus how to adjust the training images to produce the best result with some adjustments to the model to avoid overfitting and adding non-linearity to improve the prediction.
 
-###Why this model is suitable for this question?
-
-The NVIDIA model has been used by NVIDIA for the end-to-end self driving test as such the model is well suited for the project.  The reason behind this is that it is using the convolution layers which works well with supervised image classification / regression problems.  As the model is well documented, I was able to focus how to adjust the training images to produce the best result with some adjustments to the model to avoid overfitting and adding non-linearity to improve the prediction.
-
-
-###How did you decide the number and type of layers?
-
-The model is based on the NVIDIA architecture.  The NVIDIA model was introduced in the course and it is an proven-to-work solution for behavioral cloning task.  However, I've added the following adjustments to the model. 
+I've added the following adjustments to the model. 
 
 - I used Lambda layer to normalized input images to avoid saturation and make gradients work better.
 - I've added an additional dropout layer to avoid overfitting after the convolution layers.
@@ -165,15 +163,11 @@ The following is the example transformations:
 
 I splitted the images into train and validation set in order to measure the performance at every epoch.  Testing was done using the simulator.
 
+As for training, 
 
-###How to evaluate the model
-
-As for training, I used mean squared error for the loss function to measure how close the model predicts to the given steering angle for each image.
-
-
-I used Adam optimizer for optimization with learning rate of 1.0e-4 which is smaller than the default of 1.0e-3.  The default value was too big and made the validation loss stop improving too soon.
-
-I used ModelCheckpoint from Keras to save the model only if the validation loss is improved which is checked for every epoch.
+- I used mean squared error for the loss function to measure how close the model predicts to the given steering angle for each image.
+- I used Adam optimizer for optimization with learning rate of 1.0e-4 which is smaller than the default of 1.0e-3.  The default value was too big and made the validation loss stop improving too soon.
+- I used ModelCheckpoint from Keras to save the model only if the validation loss is improved which is checked for every epoch.
 
 As there can be unlimited number of images augmented, I set the samples per epoch to 20,000.  I tried from 1 to 200 epochs but I found 5 epochs is good enough to produce a well trained model.  The batch size of 40 was chosen as that is the maximum size which does not cause out of memory error on my Mac.
 
@@ -183,3 +177,8 @@ As there can be unlimited number of images augmented, I set the samples per epoc
 
 The model can drive the course without bumping into the side ways.
 
+- [The Lake Track - YouTube Link](https://youtu.be/7QdL3Az55jU)
+- [The Mountain Track - YouTube Link](https://youtu.be/fqaibk81eM4)
+
+## References
+- NVIDIA model: https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
