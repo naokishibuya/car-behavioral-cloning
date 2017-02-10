@@ -1,6 +1,15 @@
-[![Lake Track](images/lake_track.jpg)](https://youtu.be/7QdL3Az55jU)
 
-[YouTube Link](https://youtu.be/7QdL3Az55jU)
+
+<table border=0>
+<tr>
+<td>[![Lake Track](images/lake_track.jpg)](https://youtu.be/7QdL3Az55jU)</td>
+<td>[![Mountain Track](images/mountain_track.jpg)](https://youtu.be/fqaibk81eM4)|</td>
+</tr>
+<tr>
+<td align=center>[Lake Track - YouTube Link](https://youtu.be/7QdL3Az55jU)</td>
+<td align=center>[Mountain Track - YouTube Link](https://youtu.be/fqaibk81eM4)</td>
+</tr>
+</table>
 
 ## Project Description
 
@@ -21,6 +30,7 @@ In this project, the neural network is given a task of cloning the car driving b
 
 - Install required python libraries:
 
+You need a [anaconda](https://www.continuum.io/downloads) or [miniconda](https://conda.io/miniconda.html).  
 ```python
 # Use TensorFlow without GPU
 conda env create -f environments.yml 
@@ -45,6 +55,13 @@ This will generate:
 
 - model.json for model architecture
 - model-XXX.h5 for trained data
+
+Suppose you want to run a model generated (i.e., model-001.h5), rename it to `model.h5`
+
+```python
+mv model-001.h5 model.h5  # this will overwrite the existing model.h5.  
+python drive.py model.json
+```
 
 ## Model Architecture Design
 
