@@ -1,3 +1,7 @@
+[![Lake Track](images/lake_track.jpg)](https://youtu.be/7QdL3Az55jU)
+
+[YouTube Link](https://youtu.be/7QdL3Az55jU)
+
 ## Project Description
 
 In this project, the neural network is given a task of cloning the car driving behavior.  As such, I conducted a supervised learning on the car steering angle given road images in front of a car.  There are three images from the center, the left and the right angles associated with the car.  It is a supervised regression problem.  As image processing is involved, the convolutional neural network was chosen, especially [the NVIDIA model](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) that was proven to work in the same kind of problem domain.
@@ -10,7 +14,37 @@ In this project, the neural network is given a task of cloning the car driving b
 - utils.py The script to provide useful functionalities (i.e. image preprocessing and augumentation)
 - model.json The model architecture.
 - model.h5 The model weights.
+- environments.yml conda environment (Use TensorFlow without GPU)
+- environments-gpu.yml conda environment (Use TensorFlow with GPU)
 
+## Quick Start
+
+- Install required python libraries:
+
+```python
+# Use TensorFlow without GPU
+conda env create -f environments.yml 
+
+# Use TensorFlow with GPU
+conda env create -f environments-gpu.yml
+```
+
+- Run the pretrained model
+
+```python
+python drive.py model.json
+```
+
+- To train the model
+
+```python
+python model.py
+```
+
+This will generate:
+
+- model.json for model architecture
+- model-XXX.h5 for trained data
 
 ## Model Architecture Design
 

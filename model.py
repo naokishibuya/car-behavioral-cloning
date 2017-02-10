@@ -65,9 +65,9 @@ samples_per_epoch = 20000
 nb_epoch = 5
 
 checkpoint = ModelCheckpoint("model-{epoch:03d}.h5",
-						     monitor='val_loss',
+                             monitor='val_loss',
                              verbose=0,
-							 save_best_only=True,
+                             save_best_only=True,
                              mode='auto')
 
 tensorboard = TensorBoard(log_dir='./logs', histogram_freq=10, write_graph=True, write_images=True)
@@ -82,7 +82,4 @@ model.fit_generator(batch_generator(X_train, y_train, batch_size, True),
                     nb_val_samples=len(X_valid),
                     callbacks=[checkpoint, tensorboard],
                     verbose=1)
-
-# save the weights
-#model.save_weights('model.h5')
 
