@@ -1,16 +1,9 @@
 
 
-<table border=0>
-<tr>
-<td>[![Lake Track](images/lake_track.jpg)](https://youtu.be/7QdL3Az55jU)</td>
-<td>[![Mountain Track](images/mountain_track.jpg)](https://youtu.be/fqaibk81eM4)|</td>
-</tr>
-<tr>
-<td align=center>[Lake Track - YouTube Link](https://youtu.be/7QdL3Az55jU)</td>
-<td align=center>[Mountain Track - YouTube Link](https://youtu.be/fqaibk81eM4)</td>
-</tr>
-</table>
-
+|   |   |
+|:---:|:---:|
+|[![Lake Track](images/lake_track.jpg)](https://youtu.be/7QdL3Az55jU)|[![Mountain Track](images/mountain_track.jpg)](https://youtu.be/fqaibk81eM4)|
+|[Lake Track - YouTube Link](https://youtu.be/7QdL3Az55jU)|[Mountain Track - YouTube Link](https://youtu.be/fqaibk81eM4)|
 ## Project Description
 
 In this project, the neural network is given a task of cloning the car driving behavior.  As such, I conducted a supervised learning on the car steering angle given road images in front of a car.  There are three images from the center, the left and the right angles associated with the car.  It is a supervised regression problem.  As image processing is involved, the convolutional neural network was chosen, especially [the NVIDIA model](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) that was proven to work in the same kind of problem domain.
