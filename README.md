@@ -15,21 +15,23 @@ The network is based on [The NVIDIA model](https://devblogs.nvidia.com/parallelf
 
 As image processing is involved, the model is using convolutional layers for automated feature engineering.  
 
-###Files included
+### Files included
 
 - model.py The script used to create and train the model.
 - drive.py The script to drive the car. You can feel free to resubmit the original drive.py or make modifications and submit your modified version.
 - utils.py The script to provide useful functionalities (i.e. image preprocessing and augumentation)
-- model.json The model architecture.
 - model.h5 The model weights.
 - environments.yml conda environment (Use TensorFlow without GPU)
 - environments-gpu.yml conda environment (Use TensorFlow with GPU)
 
+Note: drive.py is originally from [the Udacity Behavioral Cloning project GitHub](https://github.com/udacity/CarND-Behavioral-Cloning-P3) but it has been modified to control the throttle.
+
 ## Quick Start
 
-- Install required python libraries:
+### Install required python libraries:
 
-You need a [anaconda](https://www.continuum.io/downloads) or [miniconda](https://conda.io/miniconda.html).  
+You need a [anaconda](https://www.continuum.io/downloads) or [miniconda](https://conda.io/miniconda.html) to use the environment setting.
+
 ```python
 # Use TensorFlow without GPU
 conda env create -f environments.yml 
@@ -38,29 +40,25 @@ conda env create -f environments.yml
 conda env create -f environments-gpu.yml
 ```
 
-- Run the pretrained model
+Or you can manually install the required libraries (see the contents of the environemnt*.yml files) using pip.
+
+### Run the pretrained model
+
+Start up [the Udacity self-driving simulator](https://github.com/udacity/self-driving-car-sim), choose a scene and press the Autonomous Mode button.  Then, run the model as follows:
 
 ```python
-python drive.py model.json
+python drive.py model.h5
 ```
 
-- To train the model
+### To train the model
+
+You'll need the data folder which contains the training images.
 
 ```python
 python model.py
 ```
 
-This will generate:
-
-- model.json for model architecture
-- model-XXX.h5 for trained data
-
-Suppose you want to run a model generated (i.e., model-001.h5), rename it to `model.h5`
-
-```python
-mv model-001.h5 model.h5  # this will overwrite the existing model.h5.  
-python drive.py model.json
-```
+This will generate a file `model-<epoch>.h5` whenever the performance in the epoch is better than the previous best.  For example, the first epoch will generate a file called `model-000.h5`.
 
 ## Model Architecture Design
 
@@ -92,26 +90,26 @@ As per the NVIDIA model, the convolution layers are meant to handle feature engi
 
 The below is an model structure output from the Keras which gives more details on the shapes and the number of parameters.
 
-| Layer (type)                   |Output Shape      |Params  |Connected to      |
-|--------------------------------|------------------|-------:|------------------|
-|lambda_1 (Lambda)               |(None, 66, 200, 3)|0       |lambda_input_1    |            
-|convolution2d_1 (Convolution2D) |(None, 31, 98, 24)|1824    |lambda_1          |                   
-|convolution2d_2 (Convolution2D) |(None, 14, 47, 36)|21636   |convolution2d_1   |            
-|convolution2d_3 (Convolution2D) |(None, 5, 22, 48) |43248   |convolution2d_2   |            
-|convolution2d_4 (Convolution2D) |(None, 3, 20, 64) |27712   |convolution2d_3   |            
-|convolution2d_5 (Convolution2D) |(None, 1, 18, 64) |36928   |convolution2d_4   |            
-|dropout_1 (Dropout)             |(None, 1, 18, 64) |0       |convolution2d_5   |            
-|flatten_1 (Flatten)             |(None, 1152)      |0       |dropout_1         |                  
-|dense_1 (Dense)                 |(None, 100)       |115300  |flatten_1         |                  
-|dense_2 (Dense)                 |(None, 50)        |5050    |dense_1           |                    
-|dense_3 (Dense)                 |(None, 10)        |510     |dense_2           |                    
-|dense_4 (Dense)                 |(None, 1)         |11      |dense_3           |                    
-|                                |**Total params**  |252219  |                  |
+| Layer (type)                   |Output Shape      |Params  |Connected to     |
+|--------------------------------|------------------|-------:|-----------------|
+|lambda_1 (Lambda)               |(None, 66, 200, 3)|0       |lambda_input_1   |
+|convolution2d_1 (Convolution2D) |(None, 31, 98, 24)|1824    |lambda_1         |
+|convolution2d_2 (Convolution2D) |(None, 14, 47, 36)|21636   |convolution2d_1  |
+|convolution2d_3 (Convolution2D) |(None, 5, 22, 48) |43248   |convolution2d_2  |
+|convolution2d_4 (Convolution2D) |(None, 3, 20, 64) |27712   |convolution2d_3  |
+|convolution2d_5 (Convolution2D) |(None, 1, 18, 64) |36928   |convolution2d_4  |
+|dropout_1 (Dropout)             |(None, 1, 18, 64) |0       |convolution2d_5  |
+|flatten_1 (Flatten)             |(None, 1152)      |0       |dropout_1        |
+|dense_1 (Dense)                 |(None, 100)       |115300  |flatten_1        |
+|dense_2 (Dense)                 |(None, 50)        |5050    |dense_1          |
+|dense_3 (Dense)                 |(None, 10)        |510     |dense_2          |
+|dense_4 (Dense)                 |(None, 1)         |11      |dense_3          |
+|                                |**Total params**  |252219  |                 |
 
 
 ## Data Preprocessing
 
-###Image Sizing
+### Image Sizing
 
 - the images are cropped so that the model won’t be trained with the sky and the car front parts
 - the images are resized to 66x200 (3 YUV channels) as per NVIDIA model
@@ -120,7 +118,7 @@ The below is an model structure output from the Keras which gives more details o
 
 ## Model Training
 
-###Image Augumentation
+### Image Augumentation
 
 For training, I used the following augumentation technique along with Python generator to generate unlimited number of images:
 
@@ -169,7 +167,7 @@ As for training,
 - I used Adam optimizer for optimization with learning rate of 1.0e-4 which is smaller than the default of 1.0e-3.  The default value was too big and made the validation loss stop improving too soon.
 - I used ModelCheckpoint from Keras to save the model only if the validation loss is improved which is checked for every epoch.
 
-As there can be unlimited number of images augmented, I set the samples per epoch to 20,000.  I tried from 1 to 200 epochs but I found 5 epochs is good enough to produce a well trained model.  The batch size of 40 was chosen as that is the maximum size which does not cause out of memory error on my Mac.
+As there can be unlimited number of images augmented, I set the samples per epoch to 20,000.  I tried from 1 to 200 epochs but I found 5-10 epochs is good enough to produce a well trained model.  The batch size of 40 was chosen as that is the maximum size which does not cause out of memory error on my Mac.
 
 
 
