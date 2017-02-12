@@ -108,7 +108,7 @@ def augument(center, left, right, steering_angle):
     return image, steering_angle
 
 
-def batch_generator(image_paths, steering_angles, batch_size):
+def batch_generator(image_paths, steering_angles, batch_size, is_training):
     """
     Generate training image give image paths and associated steering angles
     """
@@ -119,10 +119,10 @@ def batch_generator(image_paths, steering_angles, batch_size):
         for index in np.random.permutation(image_paths.shape[0]):
             center, left, right = image_paths[index]
             steering_angle = steering_angles[index]
-            image, steering_angle = augument(center, left, right, steering_angle)
-            # Most of the training images has zero steering angle.
-            # Here, we are making sure we have more non-zero steering angles.
-            if abs(steering_angle) < 0.01 and np.random.rand() < 0.7:
+            image = load_image(center) 
+            if is_training and np.random.rand() < 0.7:
+                # Most of the training images has zero steering angle.
+                # Here, we are making sure we have more non-zero steering angles.
                 while abs(steering_angle) < 0.01:
                     image, steering_angle = augument(center, left, right, steering_angle)
             images[i] = preprocess(image)

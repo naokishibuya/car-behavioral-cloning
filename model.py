@@ -64,11 +64,11 @@ def train_model(model, X_train, X_valid, y_train, y_valid):
 
     model.compile(loss='mean_squared_error', optimizer=Adam(lr=1.0e-4))
 
-    model.fit_generator(batch_generator(X_train, y_train, batch_size),
+    model.fit_generator(batch_generator(X_train, y_train, batch_size, True),
                         samples_per_epoch,
                         nb_epoch,
                         max_q_size=1,
-                        validation_data=batch_generator(X_valid, y_valid, batch_size),
+                        validation_data=batch_generator(X_valid, y_valid, batch_size, False),
                         nb_val_samples=len(X_valid),
                         callbacks=[checkpoint],
                         verbose=1)
