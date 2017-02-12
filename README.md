@@ -180,3 +180,4 @@ The model can drive the course without bumping into the side ways.
 
 ## References
 - NVIDIA model: https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
+- Udacity Self-Driving Car Simulator: https://github.com/udacity/self-driving-car-sim
