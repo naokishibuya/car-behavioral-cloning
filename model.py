@@ -59,7 +59,7 @@ def train_model(model, X_train, X_valid, y_train, y_valid):
     checkpoint = ModelCheckpoint("model-{epoch:03d}.h5",
                                  monitor='val_loss',
                                  verbose=0,
-                                 save_best_only=False,
+                                 save_best_only=True,
                                  mode='auto')
 
     model.compile(loss='mean_squared_error', optimizer=Adam(lr=1.0e-4))
