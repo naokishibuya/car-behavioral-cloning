@@ -85,6 +85,17 @@ def random_translate(image, steering_angle, range_x, range_y):
     return image, steering_angle
 
 
+def random_brightness(image):
+    """
+    Randomly adjust brightness of the image.
+    """
+    # HSV (Hue, Saturation, Value) is also called HSB ('B' for Brightness).
+    hsv = cv2.cvtColor(image, cv2.COLOR_RGB2HSV)
+    ratio = 1.0 + 0.4 * (np.random.rand() - 0.5)
+    hsv[:,:,2] =  hsv[:,:,2] * ratio
+    return cv2.cvtColor(hsv, cv2.COLOR_HSV2RGB)
+
+
 def augument(center, left, right, steering_angle):
     """
     Generate an augumented image and adjust steering angle.
@@ -93,6 +104,7 @@ def augument(center, left, right, steering_angle):
     image, steering_angle = choose_image(center, left, right, steering_angle)
     image, steering_angle = random_flip(image, steering_angle)
     image, steering_angle = random_translate(image, steering_angle, 100, 10)
+    image = random_brightness(image)
     return image, steering_angle
 
 
