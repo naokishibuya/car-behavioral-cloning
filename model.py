@@ -5,7 +5,7 @@ from keras.models import Sequential
 from keras.optimizers import Adam
 from keras.callbacks import ModelCheckpoint
 from keras.layers import Lambda, Conv2D, MaxPooling2D, Dropout, Dense, Flatten
-from utils import batch_generator, input_shape
+from utils import DRIVING_LOG_PATH, INPUT_SHAPE, batch_generator
 
 np.random.seed(0)
 
@@ -31,7 +31,7 @@ def build_model():
     keep_prob = 0.5
 
     model = Sequential()
-    model.add(Lambda(lambda x: x/127.5-1.0, input_shape=input_shape))
+    model.add(Lambda(lambda x: x/127.5-1.0, input_shape=INPUT_SHAPE))
     model.add(Conv2D(24, 5, 5, activation='elu', subsample=(2, 2)))
     model.add(Conv2D(36, 5, 5, activation='elu', subsample=(2, 2)))
     model.add(Conv2D(48, 5, 5, activation='elu', subsample=(2, 2)))
@@ -77,7 +77,7 @@ def main():
     """
     Load train/validation data set and train the model
     """
-    data = load_data('data/driving_log.csv')
+    data = load_data(DRIVING_LOG_PATH)
     model = build_model()
     train_model(model, *data)
 

@@ -2,17 +2,18 @@ import cv2, os
 import numpy as np
 import matplotlib.image as mpimg
 
-image_dir = 'data'
+IMAGE_DIR = 'data'
+DRIVING_LOG_PATH = os.path.join(IMAGE_DIR, 'driving_log.csv')
 
-image_height, image_width, image_channels = 66, 200, 3
-input_shape = (image_height, image_width, image_channels)
+IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNELS = 66, 200, 3
+INPUT_SHAPE = (IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNELS)
 
 
 def load_image(file):
     """
     Load RGB images from a file
     """
-    path = os.path.join(image_dir, file.strip())
+    path = os.path.join(IMAGE_DIR, file.strip())
     image = mpimg.imread(path)
     return image
 
@@ -28,7 +29,7 @@ def resize(image):
     """
     Resize the image to the input shape used by the network model
     """
-    return cv2.resize(image, (image_width, image_height), cv2.INTER_AREA)
+    return cv2.resize(image, (IMAGE_WIDTH, IMAGE_HEIGHT), cv2.INTER_AREA)
 
 
 def rgb2yuv(image):
@@ -99,7 +100,7 @@ def batch_generator(image_paths, steering_angles, batch_size):
     """
     Generate training image give image paths and associated steering angles
     """
-    images = np.empty([batch_size, image_height, image_width, image_channels])
+    images = np.empty([batch_size, IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNELS])
     steers = np.empty(batch_size)
     while True:
         i = 0
