@@ -178,7 +178,7 @@ This tracker was later released in the new simulator by Udacity and replaced the
 
 I used the simulator to generate training data by doing 3 to 4 rounds.  Also, added several recovery scenarios to handle tricky curves and slopes.
 
-As for epoch, I needed 20-30 epcohs.  I felt that the validation loss is not a great indication of how well it drives.  So, I tried the last several models to see which one drives the best.
+I felt that the validation loss is not a great indication of how well it drives.  So, I tried the last several models to see which one drives the best.  For this, I set the save_best_only to False (use `-o false` for model.py), and I used 50 epcohs (Use `-n 50`).
 
 ## Outcome
 
