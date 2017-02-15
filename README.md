@@ -128,6 +128,7 @@ For training, I used the following augumentation technique along with Python gen
 - Randomly flip image left/right
 - Randomly translate image horizontally with steering angle adjustment (0.002 per pixel shift)
 - Randomly translate image virtically
+- Randomly added shadows
 - Randomly altering image brightness (lighter or darker)
 
 Using the left/right images is useful to train the recovery driving scenario.  The horizontal translation is useful for difficult curve handling (i.e. the one after the bridge).
