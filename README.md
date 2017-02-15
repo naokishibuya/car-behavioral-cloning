@@ -2,8 +2,8 @@
 
 |Lake Track|Mountain Track|
 |:--------:|:------------:|
-|[![Lake Track](images/lake_track.jpg)](https://youtu.be/7QdL3Az55jU)|[![Mountain Track](images/mountain_track.jpg)](https://youtu.be/fqaibk81eM4)|
-|[YouTube Link](https://youtu.be/7QdL3Az55jU)|[YouTube Link](https://youtu.be/fqaibk81eM4)|
+|[![Lake Track](images/lake_track.png)](https://youtu.be/hTPADovdyfA)|[![Jungle Track](images/jungle_track.png)](https://youtu.be/mZOc-zrbnR8)|
+|[YouTube Link](https://youtu.be/hTPADovdyfA)|[YouTube Link](https://youtu.be/mZOc-zrbnR8)|
 
 ## Project Description
 
