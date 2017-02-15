@@ -1,6 +1,6 @@
 
 
-|Lake Track|Mountain Track|
+|Lake Track|Jungle Track|
 |:--------:|:------------:|
 |[![Lake Track](images/lake_track.png)](https://youtu.be/hTPADovdyfA)|[![Jungle Track](images/jungle_track.png)](https://youtu.be/mZOc-zrbnR8)|
 |[YouTube Link](https://youtu.be/hTPADovdyfA)|[YouTube Link](https://youtu.be/mZOc-zrbnR8)|
