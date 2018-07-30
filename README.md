@@ -175,7 +175,7 @@ As there can be unlimited number of images augmented, I set the samples per epoc
 
 ### The Jungle Track
 
-This tracker was later released in the new simulator by Udacity and replaced the old mountain track.  It's much more difficuilt than the lake side track and the old mountain track.
+This track was later released in the new simulator by Udacity and replaced the old mountain track.  It's much more difficuilt than the lake side track and the old mountain track.
 
 I used the simulator to generate training data by doing 3 to 4 rounds.  Also, added several recovery scenarios to handle tricky curves and slopes.
 
