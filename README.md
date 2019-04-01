@@ -17,12 +17,12 @@ As image processing is involved, the model is using convolutional layers for aut
 
 ### Files included
 
-- model.py The script used to create and train the model.
-- drive.py The script to drive the car. You can feel free to resubmit the original drive.py or make modifications and submit your modified version.
-- utils.py The script to provide useful functionalities (i.e. image preprocessing and augumentation)
-- model.h5 The model weights.
-- environments.yml conda environment (Use TensorFlow without GPU)
-- environments-gpu.yml conda environment (Use TensorFlow with GPU)
+- `model.py` The script used to create and train the model.
+- `drive.py` The script to drive the car. You can feel free to resubmit the original `drive.py` or make modifications and submit your modified version.
+- `utils.py` The script to provide useful functionalities (i.e. image preprocessing and augumentation)
+- `model.h5` The model weights.
+- `environments.yml` conda environment (Use TensorFlow without GPU)
+- `environments-gpu.yml` conda environment (Use TensorFlow with GPU)
 
 Note: drive.py is originally from [the Udacity Behavioral Cloning project GitHub](https://github.com/udacity/CarND-Behavioral-Cloning-P3) but it has been modified to control the throttle.
 
@@ -30,7 +30,7 @@ Note: drive.py is originally from [the Udacity Behavioral Cloning project GitHub
 
 ### Install required python libraries:
 
-You need a [anaconda](https://www.continuum.io/downloads) or [miniconda](https://conda.io/miniconda.html) to use the environment setting.
+You need an [anaconda](https://www.continuum.io/downloads) or [miniconda](https://conda.io/miniconda.html) to use the environment setting.
 
 ```python
 # Use TensorFlow without GPU
@@ -40,7 +40,7 @@ conda env create -f environment.yml
 conda env create -f environment-gpu.yml
 ```
 
-Or you can manually install the required libraries (see the contents of the environemnt*.yml files) using pip.
+Or you can manually install the required libraries (see the contents of the environment*.yml files) using pip.
 
 ### Run the pretrained model
 
@@ -88,7 +88,7 @@ In the end, the model looks like as follows:
 
 As per the NVIDIA model, the convolution layers are meant to handle feature engineering and the fully connected layer for predicting the steering angle.  However, as stated in the NVIDIA document, it is not clear where to draw such a clear distinction.  Overall, the model is very functional to clone the given steering behavior.  
 
-The below is an model structure output from the Keras which gives more details on the shapes and the number of parameters.
+The below is a model structure output from the Keras which gives more details on the shapes and the number of parameters.
 
 | Layer (type)                   |Output Shape      |Params  |Connected to     |
 |--------------------------------|------------------|-------:|-----------------|
@@ -127,7 +127,7 @@ For training, I used the following augumentation technique along with Python gen
 - For right image, steering angle is adjusted by -0.2
 - Randomly flip image left/right
 - Randomly translate image horizontally with steering angle adjustment (0.002 per pixel shift)
-- Randomly translate image virtically
+- Randomly translate image vertically
 - Randomly added shadows
 - Randomly altering image brightness (lighter or darker)
 
